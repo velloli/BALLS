@@ -77,7 +77,7 @@ public class Schmovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-
+            boost();
         }
 
         if (!Input.anyKey)
@@ -99,6 +99,10 @@ public class Schmovement : MonoBehaviour
 
     void boost()
     {
+        //ANITEJ
+        //get the velocity
+        //multiply the velocity with a global float defined on top of this file, so that we can tweak this float later
+        //try impl
 
     }
 
