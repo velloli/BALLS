@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -74,7 +75,12 @@ public class Schmovement : MonoBehaviour
             }
 
         }
-            if (!Input.anyKey)
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+
+        }
+
+        if (!Input.anyKey)
         {
             doMovement(Vector3.zero);
         }
@@ -88,6 +94,11 @@ public class Schmovement : MonoBehaviour
             }
         }
 
+
+    }
+
+    void boost()
+    {
 
     }
 
