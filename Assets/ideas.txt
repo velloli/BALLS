@@ -1,0 +1,28 @@
+PLAYER MECHANICS
+
+- dash
+- bounce on the enemies to deal dmg
+- sprint?
+- stamina for phase, visual rep color fades
+- dialogue
+- materials for the sphere(metal makes player heavier, dealing more dmg with phys. attacks but less agile)
+- mid-air crouch/ stomp(x)
+- burn ?(AOR DMG)
+- spartan damage
+- mine/trap(x)
+- rewind
+- grapple hook ?
+- invisibility
+trail length = stamina
+color of sphere = health
+
+ENEMY TYPES
+- simple follow and shoot
+- simple static burst and constant fire
+- suicide bombers
+- GOLEM ?
+		
+		
+
+CREDITS		
+- jai bhatia
