@@ -13,6 +13,8 @@ PLAYER MECHANICS
 - rewind
 - grapple hook ?
 - invisibility
+- achievements/milestonies
+
 trail length = stamina
 color of sphere = health
 

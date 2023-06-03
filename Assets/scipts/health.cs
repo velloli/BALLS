@@ -50,7 +50,6 @@ public class health : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        healthUpdated.Invoke();
         if (currentHealth > 0f)
         {
             currentHealth -= amount;
@@ -60,12 +59,12 @@ public class health : MonoBehaviour
                 Die();
             }
         }
+        healthUpdated.Invoke();
 
     }
 
     public void Heal(float amount)
     {
-        healthUpdated.Invoke();
 
         if (currentHealth > 0f)
         {
@@ -76,6 +75,7 @@ public class health : MonoBehaviour
                 currentHealth = maxHealth;
             }
         }
+        healthUpdated.Invoke();
     }
 
     public void Die()

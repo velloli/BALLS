@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2106497302528563686}
   - component: {fileID: 2106497302528563687}
   - component: {fileID: 2106497302528563672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -131,6 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camerara: {fileID: 0}
   maxVelocity: 10
+  bounceDMG: 10
+  stompDMG: 10
 --- !u!96 &2106497302528563672
 TrailRenderer:
   serializedVersion: 2
@@ -239,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106497302723566468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -102,7 +102,7 @@ public class simpleEnemy : MonoBehaviour
         }
         else
         {
-            StartCoroutine(FireCoroutine());
+            StartCoroutine(FireCoroutine(timeBetweenShots));
         }
 
     }

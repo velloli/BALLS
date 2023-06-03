@@ -78,7 +78,8 @@ public class bullet : MonoBehaviour
     private void dealDamage(GameObject other)
     {
         health healthScript = other.GetComponentInParent<health>();
-        healthScript.TakeDamage(dmg);
+        if(healthScript)
+            healthScript.TakeDamage(dmg);
     }
 
     private void OnCollisionEnter(Collision collision)
