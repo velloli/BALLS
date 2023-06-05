@@ -1,12 +1,12 @@
 PLAYER MECHANICS
 
-- dash
-- bounce on the enemies to deal dmg
+- dash(DONE)
+- bounce on the enemies to deal dmg(DONE)
 - sprint?
 - stamina for phase, visual rep color fades
 - dialogue
 - materials for the sphere(metal makes player heavier, dealing more dmg with phys. attacks but less agile)
-- mid-air crouch/ stomp(x)
+- mid-air crouch/ stomp(DONE)
 - burn ?(AOR DMG)
 - spartan damage
 - mine/trap(x)

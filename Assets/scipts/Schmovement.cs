@@ -8,21 +8,27 @@ public class Schmovement : MonoBehaviour
 {
     private Rigidbody rb;
     private bool isPhasing = false;
+    private bool isDashing = false;
+
     private bool isGrounded = true;
     private bool isWalled = false;
     private int enemiesTouching = 0;
     private bool isTouchingEnemy = false;
     private bool doubleJumpAvailable = false;
 
-    private bool freezeMovement = false;
+    private bool freezeInput = false;
     private bool stompInProgress = false;
+    private bool velocityOverride = false;
 
     private List<string> conditions;
 
     public GameObject Camerara;
     public float maxVelocity = 10.0f;
+
+    [Header("Damage Vars")]
     public float bounceDMG = 10.0f;
     public float stompDMG = 70.0f;
+    public float dashDMG = 5.0f;
 
 
 
@@ -76,6 +82,10 @@ public class Schmovement : MonoBehaviour
                 rb.velocity = jumpVelocity;
                 doMovement(Vector3.up);
                 isGrounded = false;
+                if(doubleJumpAvailable)
+                {
+                    doubleJumpAvailable = false;
+                }
                 //teleport mechanic
                 //rb.velocity = Vector3.zero;
                 //transform.position = new Vector3(transform.position.x, transform.position.y + 5.0f, transform.position.z);
@@ -95,7 +105,7 @@ public class Schmovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
-            boost();
+            dash();
         }
 
         if (!Input.anyKey)
@@ -115,12 +125,32 @@ public class Schmovement : MonoBehaviour
 
     }
 
-    void boost()
+    void dash()
     {
+        if(!isDashing)
+        StartCoroutine(runDash());
         //ANITEJ
         //get the velocity
         //multiply the velocity with a global float defined on top of this file, so that we can tweak this float later
         //try impl
+
+    }
+
+    private IEnumerator runDash(float interval = 0.2f)
+    {
+        velocityOverride = true;
+        freezeInput = true;
+        isDashing = true;
+        Debug.Log("Boost started");
+        rb.velocity *= 3;
+
+        yield return new WaitForSeconds(interval);
+
+        velocityOverride = false;
+        freezeInput = false;
+        isDashing = false;
+
+        Debug.Log("Boost ended");
 
     }
 
@@ -132,7 +162,7 @@ public class Schmovement : MonoBehaviour
     private IEnumerator freezePlayerCoroutine(float interval = 1)
     {
         stompInProgress = true;
-        freezeMovement = true;
+        freezeInput = true;
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
         rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationZ;
@@ -156,7 +186,7 @@ public class Schmovement : MonoBehaviour
             {
                 if (isGrounded || isTouchingEnemy)
                 {
-                    freezeMovement = false;
+                    freezeInput = false;
                     stompInProgress = false;
                     conditions.RemoveAt(i);
                     Debug.Log("Stomp Reset");
@@ -196,7 +226,7 @@ public class Schmovement : MonoBehaviour
     {
         //Vector3 dir = Camerara.transform.right.normalized;
 
-        if (freezeMovement)
+        if (freezeInput)
             return;
         
         rb.useGravity = true;
@@ -225,7 +255,7 @@ public class Schmovement : MonoBehaviour
         
 
 
-        if (rb.velocity.magnitude > maxVelocity)
+        if (rb.velocity.magnitude > maxVelocity && !velocityOverride)
         {
             rb.velocity = rb.velocity.normalized * maxVelocity;
         }
@@ -257,24 +287,38 @@ public class Schmovement : MonoBehaviour
 
         if (collision.collider.gameObject.CompareTag("enemy"))
         {
-            //apply damage based on velocity
-            rb.velocity = Vector3.zero;
-            rb.velocity = Vector3.up * 10.0f;
-            doubleJumpAvailable = true;
+
             enemiesTouching++;
             isTouchingEnemy = true;
+            rb.velocity = Vector3.zero;
+            rb.velocity = Vector3.up * 20.0f;
+            doubleJumpAvailable = true;
+
 
             health healthScript = collision.collider.GetComponentInParent<health>();
             if (healthScript)
             {
-                if(stompInProgress)
+                if (isGrounded)
                 {
-                    Debug.Log("Stomp DMG");
-                    healthScript.TakeDamage(stompDMG);
+                    if (isDashing)
+                    {
+                        Debug.Log("Dash DMG");
+                        healthScript.TakeDamage(dashDMG);
+                    }
                 }
-                else
+                else // u hit the enemy in mid-air
                 {
-                    healthScript.TakeDamage(bounceDMG);
+                    
+
+                    if (stompInProgress)
+                    {
+                        Debug.Log("Stomp DMG");
+                        healthScript.TakeDamage(stompDMG);
+                    }
+                    else
+                    {
+                        healthScript.TakeDamage(bounceDMG);
+                    }
                 }
             }
         }
