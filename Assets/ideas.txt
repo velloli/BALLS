@@ -2,11 +2,11 @@ PLAYER MECHANICS
 
 - dash(DONE)
 - bounce on the enemies to deal dmg(DONE)
+- mid-air crouch/ stomp(DONE)
 - sprint?
 - stamina for phase, visual rep color fades
 - dialogue
 - materials for the sphere(metal makes player heavier, dealing more dmg with phys. attacks but less agile)
-- mid-air crouch/ stomp(DONE)
 - burn ?(AOR DMG)
 - spartan damage
 - mine/trap(x)
@@ -14,6 +14,8 @@ PLAYER MECHANICS
 - grapple hook ?
 - invisibility
 - achievements/milestonies
+- camera movement
+- VFX for everything
 
 trail length = stamina
 color of sphere = health
