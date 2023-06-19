@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Bson;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,18 +11,18 @@ public class Schmovement : MonoBehaviour
     private bool isPhasing = false;
     private bool isDashing = false;
 
-    private bool isGrounded = true;
-    private bool isWalled = false;
-    private int enemiesTouching = 0;
-    private bool isTouchingEnemy = false;
-    private bool doubleJumpAvailable = false;
-
-    private bool freezeInput = false;
-    private bool stompInProgress = false;
-    private bool velocityOverride = false;
+    [NonSerialized]
+    public bool isGrounded = true;
+    public bool isWalled = false;
+    public bool isTouchingEnemy = false;
+    public bool doubleJumpAvailable = false;
+    public bool freezeInput = false;
+    public bool stompInProgress = false;
+    public bool velocityOverride = false;
+    public int enemiesTouching = 0;
 
     private List<string> conditions;
-
+    public CircularBuffer<Vector3> positions;
     public GameObject Camerara;
     public float maxVelocity = 10.0f;
 
@@ -37,6 +38,7 @@ public class Schmovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        positions = new CircularBuffer<Vector3>(10);
         rb = GetComponent<Rigidbody>();
         Camerara = Camera.main.gameObject;
         GameManager.playerUnPhase += unphase;
@@ -179,6 +181,7 @@ public class Schmovement : MonoBehaviour
     }
     void executeConditions()
     {
+        Debug.Log("Conditions Size: " + conditions.Count);
         for (int i = conditions.Count - 1; i >= 0; i--)
         {
           
@@ -188,10 +191,10 @@ public class Schmovement : MonoBehaviour
                 {
                     freezeInput = false;
                     stompInProgress = false;
-                    conditions.RemoveAt(i);
-                    Debug.Log("Stomp Reset");
                     Physics.IgnoreLayerCollision(6, 3,false);
                     rb.constraints = RigidbodyConstraints.None;
+                    conditions.RemoveAt(i);
+                    //Debug.Log("Stomp Reset");
 
 
                 }
@@ -220,6 +223,11 @@ public class Schmovement : MonoBehaviour
         executeConditions();
         handleInput();
 
+    }
+
+    private void LateUpdate()
+    {
+        positions.Push(this.transform.position);
     }
 
     void doMovement(Vector3 dir)
@@ -285,6 +293,8 @@ public class Schmovement : MonoBehaviour
             isGrounded = true;
         }
 
+
+
         if (collision.collider.gameObject.CompareTag("enemy"))
         {
 
@@ -302,7 +312,7 @@ public class Schmovement : MonoBehaviour
                 {
                     if (isDashing)
                     {
-                        Debug.Log("Dash DMG");
+                        //Debug.Log("Dash DMG");
                         healthScript.TakeDamage(dashDMG);
                     }
                 }
@@ -312,8 +322,18 @@ public class Schmovement : MonoBehaviour
 
                     if (stompInProgress)
                     {
-                        Debug.Log("Stomp DMG");
-                        healthScript.TakeDamage(stompDMG);
+                        //Debug.Log("Stomp DMG");
+                        if (healthScript.TakeDamage(stompDMG) == 0)
+                        {
+                            freezeInput = false;
+                            stompInProgress = false;
+                            Physics.IgnoreLayerCollision(6, 3, false);
+                            rb.constraints = RigidbodyConstraints.None;
+                            enemiesTouching--;
+                            if (enemiesTouching <= 0)
+                                isTouchingEnemy = false;
+                        }
+                        
                     }
                     else
                     {

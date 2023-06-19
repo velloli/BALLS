@@ -48,7 +48,7 @@ public class health : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public float TakeDamage(float amount)
     {
         if (currentHealth > 0f)
         {
@@ -57,9 +57,11 @@ public class health : MonoBehaviour
             if (currentHealth <= 0f && !isDead)
             {
                 Die();
+                return 0.0f;
             }
         }
         healthUpdated.Invoke();
+        return currentHealth;
 
     }
 

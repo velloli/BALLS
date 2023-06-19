@@ -37,7 +37,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _player_position: {r: 234.41197, g: 0.42176417, b: 189.39241, a: 0}
+    - _player_position: {r: 273.24548, g: -4.7364454, b: 199.83319, a: 0}
+    - _player_position_prev: {r: 284.77316, g: -7.9756603, b: 167.20993, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2584183490080161083
 MonoBehaviour:

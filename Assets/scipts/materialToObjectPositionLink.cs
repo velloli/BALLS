@@ -19,8 +19,11 @@ public class materialToObjectPositionLink : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector4 siu = new Vector4(player.transform.position.x, player.transform.position.y, player.transform.position.z, 0);
+        Vector3 siu = player.transform.position;
+        //material.SetVector("_player_position_prev", siu);
         material.SetVector("_player_position", siu);
+        siu = player.GetComponent<Schmovement>().positions.GetLastElement();
+
         //Debug.Log(GetComponent<Renderer>().material.GetVector("_player_position"));
         //GetComponent<Renderer>().material = material;
         //Debug.Log(material.ToString());
