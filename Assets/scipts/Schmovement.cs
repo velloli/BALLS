@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Schmovement : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class Schmovement : MonoBehaviour
     public CircularBuffer<Vector3> positions;
     public GameObject Camerara;
     public float maxVelocity = 10.0f;
+    Transform closestSelectedObject = null;
+
 
     [Header("Damage Vars")]
     public float bounceDMG = 10.0f;
@@ -143,14 +147,21 @@ public class Schmovement : MonoBehaviour
         velocityOverride = true;
         freezeInput = true;
         isDashing = true;
+        rb.useGravity = false;
         Debug.Log("Boost started");
-        rb.velocity *= 3;
+
+
+        //rb.velocity *= 3;
+
+        rb.velocity = Vector3.zero;
+        rb.AddForce((closestSelectedObject.position - transform.position).normalized * 1000.0f);
 
         yield return new WaitForSeconds(interval);
 
         velocityOverride = false;
         freezeInput = false;
         isDashing = false;
+        rb.useGravity = true;
 
         Debug.Log("Boost ended");
 
@@ -181,7 +192,7 @@ public class Schmovement : MonoBehaviour
     }
     void executeConditions()
     {
-        Debug.Log("Conditions Size: " + conditions.Count);
+        //Debug.Log("Conditions Size: " + conditions.Count);
         for (int i = conditions.Count - 1; i >= 0; i--)
         {
           
@@ -220,14 +231,55 @@ public class Schmovement : MonoBehaviour
         //Bugger();
         //Debug.Log("Walled "+ isWalled);
         //Debug.Log("Ground " + isGrounded);
+
+
+
         executeConditions();
         handleInput();
+        //Debug.Log(sizeof(int));
 
     }
 
     private void LateUpdate()
     {
+        precalc();
         positions.Push(this.transform.position);
+    }
+
+    void precalc()
+    {
+        //dash calc
+        float radiusOfSphere = 10.0f;
+        float smallesDistance = 0.0f;
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radiusOfSphere);
+        if (hitColliders.Length > 0)
+        {
+            smallesDistance = radiusOfSphere;
+            foreach (Collider obj in hitColliders)
+            {
+                if (obj.gameObject.CompareTag("enemy"))
+                {
+
+                    float tempDistance = Vector3.Distance(obj.transform.position, transform.position);
+                    if (tempDistance <= smallesDistance)
+                    {
+                        smallesDistance = tempDistance;
+                        closestSelectedObject = obj.transform;
+                    }
+                }
+            }
+            /*other stuff that your code does*/
+        }
+        else
+        {
+            Debug.Log("NO COLLIDERS HIT");
+        }
+        if (closestSelectedObject)
+        {
+            Debug.DrawLine(transform.position, closestSelectedObject.position, Color.red);
+            Debug.Log(closestSelectedObject.name);
+        }
     }
 
     void doMovement(Vector3 dir)
@@ -292,8 +344,6 @@ public class Schmovement : MonoBehaviour
         {
             isGrounded = true;
         }
-
-
 
         if (collision.collider.gameObject.CompareTag("enemy"))
         {

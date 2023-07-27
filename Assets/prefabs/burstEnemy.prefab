@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 6538864106832375707}
   - component: {fileID: 6538864106832375706}
   - component: {fileID: 6538864106832375705}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Meshes
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 6538864106854190196}
   - component: {fileID: 6538864106854190195}
   - component: {fileID: 6538864106854190194}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 6538864107632142653}
   - component: {fileID: 6538864107632142652}
   - component: {fileID: 6538864107632142651}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 6538864106832375707}
   - component: {fileID: 6538864106832375706}
   - component: {fileID: 6094451386996452519}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Meshes
   m_TagString: enemy
   m_Icon: {fileID: 0}
