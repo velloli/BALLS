@@ -65,8 +65,8 @@ public class CamerMovement : MonoBehaviour
 
         //Debug.Log(radius);
         // Get the deltas that describe how much the mouse cursor got moved between frames
-        float dx = Input.GetAxis("Mouse X") * rotationSpeed * mouseSens;
-        float dy = Input.GetAxis("Mouse Y") * rotationSpeed * mouseSens;
+        float dx = Input.GetAxis("Mouse X") * rotationSpeed * mouseSens * -1;
+        float dy = Input.GetAxis("Mouse Y") * rotationSpeed * mouseSens * -1;
 
         // Only update the camera's position if the mouse got moved in either direction
 
