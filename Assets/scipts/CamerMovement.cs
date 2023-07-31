@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class CamerMovement : MonoBehaviour
 {
     // Is true when the user wants to rotate the camera
-
+    public bool holdUp = false;
     public float rotationSpeed = 1f;
     public float radius = 10f;
     public float mouseSens = 20.0f;
@@ -92,6 +92,7 @@ public class CamerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!holdUp)
         mouseSchmovement();
 
         

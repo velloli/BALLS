@@ -142,6 +142,21 @@ public class Schmovement : MonoBehaviour
 
     }
 
+    public void stopMovement()
+    {
+        freezeInput = true;
+        rb.velocity = Vector3.zero;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+     
+    }
+
+    public void startMovement()
+    {
+        freezeInput = false;
+        rb.constraints = RigidbodyConstraints.None;
+
+    }
+
     private IEnumerator runDash(float interval = 0.2f)
     {
         velocityOverride = true;
