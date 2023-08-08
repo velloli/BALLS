@@ -20,13 +20,14 @@ public class Interactor : MonoBehaviour
             {
                 StopInteractWithNPC();
             }
-            interactionInProgress = !interactionInProgress;
         }
     }
 
     private void StopInteractWithNPC()
     {
         npcInteraction.ResetCamera();
+        interactionInProgress = false;
+
     }
     private void TryInteractWithNPC()
     {
@@ -43,6 +44,8 @@ public class Interactor : MonoBehaviour
                 if (npcInteraction != null)
                 {
                     npcInteraction.InitiateInteraction();
+                    interactionInProgress = true;
+
                 }
             }
         }

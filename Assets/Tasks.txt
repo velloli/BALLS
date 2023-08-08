@@ -1,13 +1,17 @@
 
 
+
+
 TASK LIST
+
 	DONE
 		- dash
 			- auto lock nearest enemy for dash
 		- mid-air crouch/ stomp(DONE)
 		- bounce on the enemies to deal dmg(DONE)
-	DOING
 
+	DOING
+		- Weapon System( Spear)
 		
 	NEEDS REWORK
 
@@ -35,6 +39,7 @@ IDEAS
 	- camera movement
 	- VFX for everything
 	- Camera zoom in zoom out when moving
+	- weapon lock system
 	trail length = stamina
 	color of sphere = health
 
@@ -65,7 +70,7 @@ BUILD SYSTEM
 
 	CONSUMABLES
 		- 2 TYPES
-		Each consumable has tweo tinme parameters: Event Duration and Usage cooldown
+		Each consumable has teo tinme parameters: Event Duration and Usage cooldown
 			- INSTANT
 				- Event Duration is 0
 			- EFFECT DURATION
