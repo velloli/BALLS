@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Timeline.Actions.MenuPriority;
 
 
 
@@ -11,137 +10,157 @@ public class Build : MonoBehaviour
     // The maximum number of slots in the backpack
     public int maxBackpackSlots = 30;
 
-    // Lists to store different types of items
-    private List<ConsumableItem> consumables = new List<ConsumableItem>();
-    private List<WeaponItem> weapons = new List<WeaponItem>();
-    private List<ModItem> mods = new List<ModItem>();
-
-    // The maximum number of mods the player can have (2 max)
-    private const int maxModSlots = 2;
-    // The maximum number of weapons the player can have equipped (2 max)
-    private const int maxEquippedWeapons = 2;
-    // The maximum number of consumables the player can have (3 max)
-    private const int maxConsumableSlots = 3;
+    // Lists to store different types of items in inventory
+    private Backpack backpack;
 
     // Variables to store the equipped weapons and consumables
-    private List<WeaponItem> equippedWeapons = new List<WeaponItem>();
-    private List<ConsumableItem> equippedConsumables = new List<ConsumableItem>();
-    private List<ModItem> equippedMods = new List<ModItem>();
+    public ConsumableItem equippedConsumable1, equippedConsumable2, equippedConsumable3;
 
+    public WeaponItem PrimaryWeapon;
+    public WeaponItem SecondaryWeapon;
+
+    public ModItem PrimaryMod, SecondaryMod;
     // Function to add a consumable item to the backpack
-    public void AddConsumableItem(ConsumableItem item)
+   
+    private void Start()
     {
-        consumables.Add(item);
-    }
+        backpack = new Backpack(maxBackpackSlots);
 
-    // Function to remove a consumable item from the backpack
-    public void RemoveConsumableItem(ConsumableItem item)
-    {
-        consumables.Remove(item);
     }
-
-    // Function to add a weapon item to the backpack
-    public void AddWeaponItem(WeaponItem item)
+    public bool AddItemToBackpack(interfaces.IBackpackItem item)
     {
-        weapons.Add(item);
-    }
-
-    // Function to remove a weapon item from the backpack
-    public void RemoveWeaponItem(WeaponItem item)
-    {
-        weapons.Remove(item);
-    }
-
-    // Function to add a mod item to the backpack
-    public void AddModItem(ModItem item)
-    {
-        if (mods.Count < maxModSlots)
+        //automatically eqyuipping items if we have none
+        if (item is ModItem)
         {
-            mods.Add(item);
-        }
-        else
-        {
-            Debug.LogWarning("Cannot add more mods. Max mod slots reached.");
-        }
-    }
-
-    // Function to remove a mod item from the backpack
-    public void RemoveModItem(ModItem item)
-    {
-        mods.Remove(item);
-    }
-
-    // Function to equip a weapon
-    public void EquipWeapon(WeaponItem item)
-    {
-        if (weapons.Contains(item))
-        {
-            if (equippedWeapons.Count < maxEquippedWeapons)
+            if (PrimaryMod == null)
             {
-                equippedWeapons.Add(item);
+                PrimaryMod = item as ModItem;
+            }
+            else if (SecondaryMod == null)
+            {
+                SecondaryMod = item as ModItem;
             }
             else
             {
-                Debug.LogWarning("Cannot equip more weapons. Max equipped weapons reached.");
+                return backpack.AddItem(item);
             }
         }
-        else
+        else if (item is WeaponItem)
         {
-            Debug.LogWarning("Weapon not found in the backpack.");
-        }
-    }
-
-    // Function to unequip a weapon
-    public void UnequipWeapon(WeaponItem item)
-    {
-        equippedWeapons.Remove(item);
-    }
-
-    // Function to equip a mod
-    public void EquipMod(ModItem item)
-    {
-        if (mods.Contains(item))
-        {
-            if (equippedMods.Count < maxModSlots)
+            if (PrimaryWeapon == null)
             {
-                equippedMods.Add(item);
+                PrimaryWeapon = item as WeaponItem;
+            }
+            else if (SecondaryWeapon == null)
+            {
+                SecondaryWeapon = item as WeaponItem;
             }
             else
             {
-                Debug.LogWarning("Cannot equip more mods. Max equipped mods reached.");
+                return backpack.AddItem(item);
             }
         }
-        else
+        else if (item is ConsumableItem)
         {
-            Debug.LogWarning("Mod not found in the backpack.");
-        }
-    }
-
-    // Function to unequip a mod
-    public void UnequipMod(ModItem item)
-    {
-        equippedMods.Remove(item);
-    }
-
-    // Function to use a consumable
-    public void UseConsumable(ConsumableItem item)
-    {
-        if (consumables.Contains(item))
-        {
-            if (equippedConsumables.Count < maxConsumableSlots)
+            if (equippedConsumable1 == null)
             {
-                equippedConsumables.Add(item);
-                consumables.Remove(item);
+                equippedConsumable1 = item as ConsumableItem;
+            }
+            else if (equippedConsumable2 == null)
+            {
+                equippedConsumable2 = item as ConsumableItem;
+            }
+            else if (equippedConsumable3 == null)
+            {
+                equippedConsumable3 = item as ConsumableItem;
             }
             else
             {
-                Debug.LogWarning("Cannot equip more consumables. Max equipped consumables reached.");
+                return backpack.AddItem(item);
             }
         }
-        else
-        {
-            Debug.LogWarning("Consumable not found in the backpack.");
-        }
+
+        // Refresh UI or perform any other necessary actions
+        return true;
+
+
     }
-     
+
+    public bool EquipConsumable_slot1(ConsumableItem consumable)
+    {
+        if (equippedConsumable1 != null)
+        {
+            if (!backpack.AddItem(equippedConsumable1))
+            {
+                //unable to equip
+                //drop the item
+            }
+        }
+        equippedConsumable1 = consumable;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipConsumable_slot2(ConsumableItem consumable)
+    {
+        if (equippedConsumable2 != null)
+        {
+            if (!backpack.AddItem(equippedConsumable2))
+            {
+                // Unable to equip, you might want to drop the item
+                // DropLogic(equippedConsumable2);
+            }
+        }
+        equippedConsumable2 = consumable;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipConsumable_slot3(ConsumableItem consumable)
+    {
+        if (equippedConsumable3 != null)
+        {
+            if (!backpack.AddItem(equippedConsumable3))
+            {
+                // Unable to equip, you might want to drop the item
+                // DropLogic(equippedConsumable3);
+            }
+        }
+        equippedConsumable3 = consumable;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipPrimaryMod(ModItem mod)
+    {
+        if (PrimaryMod != null)
+        {
+            if (!backpack.AddItem(PrimaryMod))
+            {
+                // Unable to equip, you might want to drop the item
+                // DropLogic(PrimaryMod);
+            }
+        }
+        PrimaryMod = mod;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipSecondaryMod(ModItem mod)
+    {
+        if (SecondaryMod != null)
+        {
+            if (!backpack.AddItem(SecondaryMod))
+            {
+                // Unable to equip, you might want to drop the item
+                // DropLogic(SecondaryMod);
+            }
+        }
+        SecondaryMod = mod;
+        // Refresh UI
+        return true;
+    }
+
+
+
 }

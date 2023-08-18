@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 8167991342083249166, guid: b93d542fb74625b4aacc3bf047572b06, type: 3}
-  displayMesh: {fileID: -5754084199372789682, guid: 377069117f6e981418ba7ac694f25210, type: 3}
+  displayMeshFilter: {fileID: 0}
 --- !u!4 &882832992
 Transform:
   m_ObjectHideFlags: 0
@@ -680,6 +680,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBackpackSlots: 30
+  equippedConsumable1: {fileID: 0}
+  equippedConsumable2: {fileID: 0}
+  equippedConsumable3: {fileID: 0}
+  PrimaryWeapon: {fileID: 0}
+  SecondaryWeapon: {fileID: 0}
+  PrimaryMod: {fileID: 0}
+  SecondaryMod: {fileID: 0}
 --- !u!1 &1195069904
 GameObject:
   m_ObjectHideFlags: 0

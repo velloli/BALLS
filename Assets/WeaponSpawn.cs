@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//need to change this later, figure out how to do weapon spawning preoperly
 public class WeaponSpawn : MonoBehaviour
 {
     //public game
     public WeaponItem weapon;
-    public MeshFilter displayMesh;
+    public MeshFilter displayMeshFilter;
     // Start is called before the first frame update
     void Start()
     {
-        displayMesh = GetComponent<MeshFilter>();
-        displayMesh.mesh = weapon.displayMesh;
+        displayMeshFilter = GetComponent<MeshFilter>();
+        displayMeshFilter.mesh = weapon.displayMesh;
     }
 
     // Update is called once per frame
@@ -26,7 +27,7 @@ public class WeaponSpawn : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Build>().AddWeaponItem(weapon);
+            other.gameObject.GetComponent<Build>().AddItemToBackpack(weapon);
         }
         Debug.Log("Player picked up object");
         Destroy(this.gameObject);
