@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class healthUIUpdater : MonoBehaviour
+public class enemyHealthUIUpdater : MonoBehaviour
 {
     // Start is called before the first frame update
     health healthscript;

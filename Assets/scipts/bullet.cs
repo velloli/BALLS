@@ -52,9 +52,13 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && !reversed && GameManager.Instance.reverseUnlocked){
-            GetComponent<Rigidbody>().velocity *= -3;
-            material.color = Color.blue;
+        if (other.gameObject.CompareTag("Player")){
+            if(!reversed && GameManager.Instance.reverseUnlocked)
+            {
+                GetComponent<Rigidbody>().velocity *= -3;
+                material.color = Color.blue;
+
+            }
 
         }
 
@@ -84,6 +88,13 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Dealing dmg to player");
+            dealDamage(collision.gameObject);
+            Destroy(this.gameObject);
+        }
         if (collision.gameObject.CompareTag("bullet"))
         {
             //Debug.Log("Bullet to Bullet");

@@ -32,6 +32,8 @@ public class health : MonoBehaviour
 
             if (currentHealth <= 0f && !isDead)
             {
+                //TODO this is just for debugging purposes
+                if(!gameObject.CompareTag("Player"))
                 Die();
             }
         }
@@ -56,7 +58,8 @@ public class health : MonoBehaviour
 
             if (currentHealth <= 0f && !isDead)
             {
-                Die();
+                if (!gameObject.CompareTag("Player"))
+                    Die();
                 return 0.0f;
             }
         }

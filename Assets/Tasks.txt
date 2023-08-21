@@ -25,34 +25,40 @@ IDEAS
 
 	PLAYER MECHANICS
 
-	- sprint?
-	- stamina for phase, visual rep color fades
-	- dialogue
-	- materials for the sphere(metal makes player heavier, dealing more dmg with phys. attacks but less agile)
-	- burn ?(AOR DMG)
-	- spartan damage
-	- mine/trap(x)
-	- rewind
-	- grapple hook ?
-	- invisibility
-	- achievements/milestonies
-	- camera movement
-	- VFX for everything
-	- Camera zoom in zoom out when moving
-	- weapon lock system
-	trail length = stamina
-	color of sphere = health
+		- sprint?
+		- stamina for phase, visual rep color fades
+		- dialogue
+		- materials for the sphere(metal makes player heavier, dealing more dmg with phys. attacks but less agile)
+		- burn ?(AOR DMG)
+		- spartan damage
+		- mine/trap(x)
+		- rewind
+		- grapple hook ?
+		- invisibility
+		- achievements/milestonies
+		- camera movement
+		- VFX for everything
+		- Camera zoom in zoom out when moving
+		- weapon lock system
+		trail length = stamina
+		color of sphere = health
 
 	ENEMY TYPES
-	- simple follow and shoot
-	- simple static burst and constant fire
-	- suicide bombers
-	- GOLEM ?
+		- simple follow and shoot
+		- simple static burst and constant fire
+		- suicide bombers
+		- GOLEM ?
 
 	XP/LVL Sys
 		- unlock skills as you level up(linear for now)
 
 	INVENTORY
+
+	UI
+		-
+		-
+		-
+		-
 
 		
 		

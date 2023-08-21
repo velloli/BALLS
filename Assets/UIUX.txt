@@ -1,0 +1,7 @@
+UI WINDOW LIST
+
+- backpack/inventory
+- looting enemy/chest
+- interacting with NPC
+- stats/ build?
+- normal gameplay

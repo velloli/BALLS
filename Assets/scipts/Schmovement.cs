@@ -55,29 +55,30 @@ public class Schmovement : MonoBehaviour
     }
     void handleInput()
     {
+        Vector3 movementDirection = Vector3.zero;
+
         if (Input.GetKey(KeyCode.W))
         {
-            Vector3 dir = Camerara.transform.forward.normalized;
-            dir.y = 0;
-            doMovement(dir.normalized);
+            movementDirection += Camerara.transform.forward.normalized;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            Vector3 dir = -Camerara.transform.forward.normalized;
-            dir.y = 0;
-
-            doMovement(dir.normalized);
+            movementDirection -= Camerara.transform.forward.normalized;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            Vector3 dir = -Camerara.transform.right.normalized;
-
-            doMovement(dir);
+            movementDirection -= Camerara.transform.right.normalized;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            Vector3 dir = Camerara.transform.right.normalized;
-            doMovement(dir);
+            movementDirection += Camerara.transform.right.normalized;
+        }
+
+        // Ensure the movementDirection vector is normalized to maintain consistent speed
+        if (movementDirection != Vector3.zero)
+        {
+            movementDirection.y = 0;
+            doMovement(movementDirection.normalized);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -264,6 +265,7 @@ public class Schmovement : MonoBehaviour
     void precalc()
     {
         //dash calc
+        //OPTIMIZE: this should go to the game manager probably
         float radiusOfSphere = 10.0f;
         float smallesDistance = 0.0f;
 
@@ -293,7 +295,7 @@ public class Schmovement : MonoBehaviour
         if (closestSelectedObject)
         {
             Debug.DrawLine(transform.position, closestSelectedObject.position, Color.red);
-            Debug.Log(closestSelectedObject.name);
+            //Debug.Log(closestSelectedObject.name);
         }
     }
 
