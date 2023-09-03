@@ -55,6 +55,6 @@ public class Interactor : MonoBehaviour
     {
         // Visualize the interaction radius in the scene view
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, interactionRadius);
+        //Gizmos.DrawWireSphere(transform.position, interactionRadius);
     }
 }

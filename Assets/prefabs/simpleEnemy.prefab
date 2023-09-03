@@ -460,6 +460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa8bce38b89b5ae47915b6f729b619ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthyColor: {r: 0.37254903, g: 1, b: 0.4039216, a: 1}
+  damagedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  criticalColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &6538864107803199255
 GameObject:
   m_ObjectHideFlags: 0

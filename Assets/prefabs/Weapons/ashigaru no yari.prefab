@@ -48,3 +48,4 @@ MonoBehaviour:
   isLongRange: 1
   damage: 30
   displayMesh: {fileID: 4579454407841743219, guid: 377069117f6e981418ba7ac694f25210, type: 3}
+  displayMaterial: {fileID: 2100000, guid: fe522d4ddb5bd6a46a0107011f529ec5, type: 2}

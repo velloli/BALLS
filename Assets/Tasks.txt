@@ -12,6 +12,9 @@ TASK LIST
 
 	DOING
 		- Weapon System( Spear)
+			- currently working on making an orientaation gameobj which will help 
+		      hold all the visual components which follow the sphere, together.
+				- figured out how to code the orientation parent so now I just have to attach the necessary objects like the weapon placeholders accordingly
 		
 	NEEDS REWORK
 

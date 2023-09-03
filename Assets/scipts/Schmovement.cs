@@ -295,7 +295,13 @@ public class Schmovement : MonoBehaviour
         if (closestSelectedObject)
         {
             Debug.DrawLine(transform.position, closestSelectedObject.position, Color.red);
+            //GetComponent<uiAwareness>().highlightEnemy_Dash(closestSelectedObject.gameObject);
             //Debug.Log(closestSelectedObject.name);
+        }
+        else
+        {
+            //GetComponent<uiAwareness>().highlightEnemy_Dash(null);
+
         }
     }
 

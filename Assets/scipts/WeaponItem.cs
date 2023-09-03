@@ -17,7 +17,22 @@ public class WeaponItem : MonoBehaviour ,IBackpackItem
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Player"))
+        {
+            onPickup();
+        }
+    }
+
+    public void Fire()
+    {
+
+    }
+
+    public void onPickup()
+    {
+        GameManager.Instance.player.GetComponent<Build>().EquipPrimaryWeapon(this);
+        Debug.Log("Equipped " + itemName);
+        //Destroy(this);
     }
 
     // Add more weapon stats here as needed

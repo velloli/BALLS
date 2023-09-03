@@ -27,9 +27,9 @@ public class WeaponSpawn : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Build>().AddItemToBackpack(weapon);
+            other.gameObject.GetComponent<Build>().EquipWeapon(weapon);
+            Debug.Log("Player picked up object");
+            Destroy(this.gameObject);
         }
-        Debug.Log("Player picked up object");
-        Destroy(this.gameObject);
     }
 }

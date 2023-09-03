@@ -91,7 +91,7 @@ public class bullet : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Dealing dmg to player");
+            //Debug.Log("Dealing dmg to player");
             dealDamage(collision.gameObject);
             Destroy(this.gameObject);
         }

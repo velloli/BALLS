@@ -27,6 +27,84 @@ public class Build : MonoBehaviour
         backpack = new Backpack(maxBackpackSlots);
 
     }
+   
+
+    public bool EquipConsumable_slot1(ConsumableItem consumable)
+    {
+
+        equippedConsumable1 = consumable;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipConsumable_slot2(ConsumableItem consumable)
+    {
+
+        equippedConsumable2 = consumable;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipConsumable_slot3(ConsumableItem consumable)
+    {
+
+        equippedConsumable3 = consumable;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipPrimaryMod(ModItem mod)
+    {
+
+        PrimaryMod = mod;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipSecondaryMod(ModItem mod)
+    {
+        SecondaryMod = mod;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipSecondaryWeapon(WeaponItem weapon)
+    {
+        SecondaryWeapon = weapon;
+        // Refresh UI
+        return true;
+    }
+
+    public bool EquipWeapon(WeaponItem weapon)
+    {
+        if(PrimaryWeapon == null)
+        {
+            PrimaryWeapon = weapon;
+        }
+        else if (SecondaryWeapon == null)
+        {
+            Debug.Log("Assigning a secondary weapon");
+            SecondaryWeapon = weapon;
+        }
+        else
+        {
+            bool v = AddItemToBackpack(PrimaryWeapon);
+            return false;
+        }
+
+        GetComponent<BuildDisplayer>().refreshWeapons();
+
+        return true;
+    }
+
+    public bool EquipPrimaryWeapon(WeaponItem weapon)
+    {
+        PrimaryWeapon = weapon;
+        GetComponent<BuildDisplayer>().refreshWeapons();
+        // Refresh UI
+        return true;
+    }
+
     public bool AddItemToBackpack(interfaces.IBackpackItem item)
     {
         //automatically eqyuipping items if we have none
@@ -84,81 +162,6 @@ public class Build : MonoBehaviour
         return true;
 
 
-    }
-
-    public bool EquipConsumable_slot1(ConsumableItem consumable)
-    {
-        if (equippedConsumable1 != null)
-        {
-            if (!backpack.AddItem(equippedConsumable1))
-            {
-                //unable to equip
-                //drop the item
-            }
-        }
-        equippedConsumable1 = consumable;
-        // Refresh UI
-        return true;
-    }
-
-    public bool EquipConsumable_slot2(ConsumableItem consumable)
-    {
-        if (equippedConsumable2 != null)
-        {
-            if (!backpack.AddItem(equippedConsumable2))
-            {
-                // Unable to equip, you might want to drop the item
-                // DropLogic(equippedConsumable2);
-            }
-        }
-        equippedConsumable2 = consumable;
-        // Refresh UI
-        return true;
-    }
-
-    public bool EquipConsumable_slot3(ConsumableItem consumable)
-    {
-        if (equippedConsumable3 != null)
-        {
-            if (!backpack.AddItem(equippedConsumable3))
-            {
-                // Unable to equip, you might want to drop the item
-                // DropLogic(equippedConsumable3);
-            }
-        }
-        equippedConsumable3 = consumable;
-        // Refresh UI
-        return true;
-    }
-
-    public bool EquipPrimaryMod(ModItem mod)
-    {
-        if (PrimaryMod != null)
-        {
-            if (!backpack.AddItem(PrimaryMod))
-            {
-                // Unable to equip, you might want to drop the item
-                // DropLogic(PrimaryMod);
-            }
-        }
-        PrimaryMod = mod;
-        // Refresh UI
-        return true;
-    }
-
-    public bool EquipSecondaryMod(ModItem mod)
-    {
-        if (SecondaryMod != null)
-        {
-            if (!backpack.AddItem(SecondaryMod))
-            {
-                // Unable to equip, you might want to drop the item
-                // DropLogic(SecondaryMod);
-            }
-        }
-        SecondaryMod = mod;
-        // Refresh UI
-        return true;
     }
 
 
