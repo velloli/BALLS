@@ -90,10 +90,13 @@ public class BuildDisplayer : MonoBehaviour
         primaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = GetComponent<Build>().PrimaryWeapon.displayMesh;
     }
 
-    public void refreshWeapons()
+    public void refreshWeaponsDisplay()
     {
-        if(GetComponent<Build>().PrimaryWeapon)
-        primaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = GetComponent<Build>().PrimaryWeapon.displayMesh;
+        if (GetComponent<Build>().PrimaryWeapon)
+        {
+            primaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = GetComponent<Build>().PrimaryWeapon.displayMesh;
+
+        }
 
         if (GetComponent<Build>().SecondaryWeapon)
             secondaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = GetComponent<Build>().SecondaryWeapon.displayMesh;

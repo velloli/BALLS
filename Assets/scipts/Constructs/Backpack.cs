@@ -6,7 +6,8 @@ using static interfaces;
 
 public class Backpack
 {
-    private List<IBackpackItem> items = new List<IBackpackItem>();
+    [SerializeField]
+    public List<IBackpackItem> items = new List<IBackpackItem>();
     private int maxSlots;
 
     public Backpack(int maxSlots)

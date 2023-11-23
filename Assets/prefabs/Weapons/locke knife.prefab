@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8167991342083249167}
-  - component: {fileID: 8167991342083249166}
+  - component: {fileID: 8108439160730803956}
   m_Layer: 0
-  m_Name: ashigaru no yari
+  m_Name: locke knife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8167991342083249166
+--- !u!114 &8108439160730803956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8167991342083249169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73d1760c812ff2488fd2469c01b3914, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ee55d452c2c8b046bb9367eb0c26404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: ashigaru no yari
-  isLongRange: 1
-  damage: 30
-  displayMesh: {fileID: 4579454407841743219, guid: 377069117f6e981418ba7ac694f25210, type: 3}
-  displayMaterial: {fileID: 2100000, guid: fe522d4ddb5bd6a46a0107011f529ec5, type: 2}
+  itemName: 
+  isLongRange: 0
+  damage: 0
+  displayMesh: {fileID: 0}
+  displayMaterial: {fileID: 0}

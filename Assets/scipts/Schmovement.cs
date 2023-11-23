@@ -136,11 +136,6 @@ public class Schmovement : MonoBehaviour
     {
         if(!isDashing)
         StartCoroutine(runDash());
-        //ANITEJ
-        //get the velocity
-        //multiply the velocity with a global float defined on top of this file, so that we can tweak this float later
-        //try impl
-
     }
 
     public void stopMovement()
@@ -232,7 +227,7 @@ public class Schmovement : MonoBehaviour
     void phase()
     {
         //Time.timeScale = 0.5f;
-        GameManager.Instance.ExecutePhase();
+        //GameManager.Instance.ExecutePhase();
     }
     void Bugger()
     {

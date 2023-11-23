@@ -9,15 +9,19 @@ TASK LIST
 			- auto lock nearest enemy for dash
 		- mid-air crouch/ stomp(DONE)
 		- bounce on the enemies to deal dmg(DONE)
-
-	DOING
 		- Weapon System( Spear)
 			- currently working on making an orientaation gameobj which will help 
 		      hold all the visual components which follow the sphere, together.
 				- figured out how to code the orientation parent so now I just have to attach the necessary objects like the weapon placeholders accordingly
-		
-	NEEDS REWORK
 
+	DOING
+		- figure out how the fuck to do firing
+
+	NEEDS REWORK
+		- input system needs to be centralized instead of ewach script having itgs own input capture
+
+	QOL
+		- dont rotate the guns
 
 BUGS
 	- Extend the enemy collider to cover the barrel

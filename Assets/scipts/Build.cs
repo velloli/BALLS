@@ -11,7 +11,8 @@ public class Build : MonoBehaviour
     public int maxBackpackSlots = 30;
 
     // Lists to store different types of items in inventory
-    private Backpack backpack;
+    [SerializeField]
+    public Backpack backpack;
 
     // Variables to store the equipped weapons and consumables
     public ConsumableItem equippedConsumable1, equippedConsumable2, equippedConsumable3;
@@ -27,8 +28,17 @@ public class Build : MonoBehaviour
         backpack = new Backpack(maxBackpackSlots);
 
     }
-   
 
+    public bool FirePrimaryWeapon()
+    {
+
+        if (PrimaryWeapon)
+        {
+            PrimaryWeapon.Fire();
+        }
+        return true;
+    }
+   
     public bool EquipConsumable_slot1(ConsumableItem consumable)
     {
 
@@ -92,7 +102,7 @@ public class Build : MonoBehaviour
             return false;
         }
 
-        GetComponent<BuildDisplayer>().refreshWeapons();
+        GetComponent<BuildDisplayer>().refreshWeaponsDisplay();
 
         return true;
     }
@@ -100,7 +110,8 @@ public class Build : MonoBehaviour
     public bool EquipPrimaryWeapon(WeaponItem weapon)
     {
         PrimaryWeapon = weapon;
-        GetComponent<BuildDisplayer>().refreshWeapons();
+        GetComponent<BuildDisplayer>().refreshWeaponsDisplay();
+        weapon.preload();
         // Refresh UI
         return true;
     }
@@ -164,6 +175,13 @@ public class Build : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {//left click
 
+            FirePrimaryWeapon();
+        }
+    }
 
 }

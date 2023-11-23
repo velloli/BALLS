@@ -4,13 +4,15 @@ using UnityEngine;
 using static interfaces;
 
 [System.Serializable]
-public class WeaponItem : MonoBehaviour ,IBackpackItem
+public abstract class WeaponItem : MonoBehaviour ,IBackpackItem
 {
     public string itemName;
     public bool isLongRange; // True for long-range, false for slash weapon
     public int damage; // Weapon damage
     public Mesh displayMesh;
     public Material displayMaterial;
+
+    private bool reloading = false;
 
     public void UseItem()
     {
@@ -23,9 +25,10 @@ public class WeaponItem : MonoBehaviour ,IBackpackItem
         }
     }
 
-    public void Fire()
-    {
 
+    private IEnumerator reloadRoutine()
+    {
+        yield return null;
     }
 
     public void onPickup()
@@ -35,5 +38,8 @@ public class WeaponItem : MonoBehaviour ,IBackpackItem
         //Destroy(this);
     }
 
+
+    public abstract void preload();
     // Add more weapon stats here as needed
+    public abstract void Fire();
 }
