@@ -1,6 +1,42 @@
+NEW SHIT
+
+- add black spots
+- add correct colored grass to each colored area
+- add a glowing aura corresponding to the buff color 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OLD SHIT
 
 TASK LIST
 
@@ -101,3 +137,8 @@ BUILD SYSTEM
 		- 30 slots for example
 		- all items take one slot
 		- consumables can be stacked
+
+
+
+		IDEAS
+		- BOSS WHO TAKES OUT CERTAIN COLOR ADN THE PLAYER HAS TO ELIMINATE HIM FIRST TO TAKE OUT THE REST OF THE ENEMIES

@@ -24,7 +24,6 @@ public class Schmovement : MonoBehaviour
     public int enemiesTouching = 0;
 
     private List<string> conditions;
-    public CircularBuffer<Vector3> positions;
     public GameObject Camerara;
     public float maxVelocity = 10.0f;
     Transform closestSelectedObject = null;
@@ -42,7 +41,6 @@ public class Schmovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        positions = new CircularBuffer<Vector3>(10);
         rb = GetComponent<Rigidbody>();
         Camerara = Camera.main.gameObject;
         GameManager.playerUnPhase += unphase;
@@ -254,7 +252,6 @@ public class Schmovement : MonoBehaviour
     private void LateUpdate()
     {
         precalc();
-        positions.Push(this.transform.position);
     }
 
     void precalc()

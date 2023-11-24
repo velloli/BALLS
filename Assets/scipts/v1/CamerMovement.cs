@@ -23,6 +23,16 @@ public class CamerMovement : MonoBehaviour
 
     void Start()
     {
+        if(SPHERE == null)
+        {
+            SPHERE = GameObject.FindGameObjectWithTag("Player");
+            if(SPHERE == null)
+            {
+                Debug.LogWarning("CAMERA IS UNABLE TO FIND PLAYER");
+                GetComponent<CamerMovement>().enabled = false;
+                return;
+            }
+        }
         target = SPHERE.transform.position;
         this.transform.position = new Vector3(radius, 0.0f, 0.0f);
         this.transform.LookAt(target);
@@ -63,12 +73,13 @@ public class CamerMovement : MonoBehaviour
     {
         target = SPHERE.transform.position;
 
-        //Debug.Log(radius);
         // Get the deltas that describe how much the mouse cursor got moved between frames
         float dx = Input.GetAxis("Mouse X") * rotationSpeed * mouseSens * -1;
         float dy = Input.GetAxis("Mouse Y") * rotationSpeed * mouseSens * -1;
 
-        // Only update the camera's position if the mouse got moved in either direction
+        // Zoom in and out with the mouse scroll wheel
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        radius = Mathf.Clamp(radius - scroll * 0.5f, 0.05f, 0.8f);
 
         // Rotate the camera left and right
         sc.y += dx * Time.deltaTime;
@@ -78,15 +89,10 @@ public class CamerMovement : MonoBehaviour
         sc.z = Mathf.Clamp(sc.z + dy * Time.deltaTime, -1.5f, 1.5f);
 
         // Calculate the cartesian coordinates for unity
-        transform.position = getCartesianCoordinates(sc) + target;
+        transform.position = getCartesianCoordinates(sc) * radius + target;
 
         // Make the camera look at the target
         transform.LookAt(target);
-
-        //TODO: fix the scrolling bug
-        //transform.position += transform.TransformDirection(Input.mouseScrollDelta.y * 10 * Vector3.forward);
-
-
     }
 
     // Update is called once per frame

@@ -22,7 +22,7 @@ public class materialToObjectPositionLink : MonoBehaviour
         Vector3 siu = player.transform.position;
         //material.SetVector("_player_position_prev", siu);
         material.SetVector("_player_position", siu);
-        siu = player.GetComponent<Schmovement>().positions.GetLastElement();
+        //siu = player.GetComponent<Schmovement>().positions.GetLastElement();
 
         //Debug.Log(GetComponent<Renderer>().material.GetVector("_player_position"));
         //GetComponent<Renderer>().material = material;

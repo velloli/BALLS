@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 2029093545}
   - component: {fileID: 2029093544}
   - component: {fileID: 2029093543}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 1024
   height: 1024
-  scale: 40
+  scale: 20
 --- !u!154 &2029093544
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -564,15 +564,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2106497302528563685, guid: a525ffe7a9ff57447a27ef3e3269d71a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 49.834877
       objectReference: {fileID: 0}
     - target: {fileID: 2106497302528563685, guid: a525ffe7a9ff57447a27ef3e3269d71a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 18.877546
       objectReference: {fileID: 0}
     - target: {fileID: 2106497302528563685, guid: a525ffe7a9ff57447a27ef3e3269d71a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 44.464462
       objectReference: {fileID: 0}
     - target: {fileID: 2106497302528563685, guid: a525ffe7a9ff57447a27ef3e3269d71a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -601,6 +601,10 @@ PrefabInstance:
     - target: {fileID: 2106497302528563685, guid: a525ffe7a9ff57447a27ef3e3269d71a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106497302528563686, guid: a525ffe7a9ff57447a27ef3e3269d71a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2106497302528563687, guid: a525ffe7a9ff57447a27ef3e3269d71a, type: 3}
       propertyPath: Camerara
