@@ -89,7 +89,7 @@ public class justSchmovement : MonoBehaviour
         velocityChange.y += rb.velocity.y;
         rb.AddForce(velocityChange * 0.5f);
 
-        Debug.Log(velocityChange.magnitude);
+        //Debug.Log(velocityChange.magnitude);
 
         if (rb.velocity.magnitude > maxVelocity)
         {
