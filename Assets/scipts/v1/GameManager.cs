@@ -70,11 +70,14 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator InvokeRoutine()
     {
+        Time.timeScale = 0.5f;
         playerPhase.Invoke();
         phaseActive = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         playerUnPhase.Invoke();
         phaseActive = false;
+        Time.timeScale = 1.0f;
+
     }
 
 }

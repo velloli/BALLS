@@ -8,6 +8,7 @@ using UnityEngine.TerrainUtils;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(MeshFilter)), RequireComponent(typeof(MeshRenderer))]
+[ExecuteInEditMode]
 public class ShellTexture : MonoBehaviour
 {
     
@@ -63,7 +64,17 @@ public class ShellTexture : MonoBehaviour
         SetupData();
         GenerateMesh();
     }
-    
+
+    private void Awake()
+    {
+        mesh = GetComponent<MeshFilter>().sharedMesh;
+        meshRenderer = GetComponent<MeshRenderer>();
+        triangleCount = mesh.triangles.Length / 3;
+        SetupBuffers();
+        SetupData();
+        GenerateMesh();
+    }
+
     private void OnDisable()
     {
         ReleaseBuffers();

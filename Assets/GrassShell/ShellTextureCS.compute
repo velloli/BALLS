@@ -60,7 +60,7 @@ float3 transformPositionLocalToWorld(float3 position)
     return mul(_LocalToWorld, float4(position, 1.0f)).xyz;
 }
 
-[numthreads(64,1,1)]
+[numthreads(32,1,1)]
 void ShellTexture (uint3 id : SV_DispatchThreadID)
 {
     if(id.x >= (uint)_TriangleCount)
@@ -80,7 +80,7 @@ void ShellTexture (uint3 id : SV_DispatchThreadID)
         //float3 position = inputVertex.position + (normal * _HeightOffset * factor);
         float3 position = transformPositionLocalToWorld(inputVertex.position) + (worldy * _HeightOffset * factor);
         float2 uv = inputVertex.uv;
-        float4 vertexColor = float4(factor, 0.0f, 0.0f, 0.0f);
+        float4 vertexColor = float4(0.0f, 0.0f, 0.0f, factor);
         drawTriangle.drawVertices[0] = GetVertex(position, normal, uv, vertexColor);
 
         inputVertex = inputTriangle.v1;
@@ -88,7 +88,7 @@ void ShellTexture (uint3 id : SV_DispatchThreadID)
         //position = inputVertex.position + (normal * _HeightOffset * factor);
         position = transformPositionLocalToWorld(inputVertex.position) + (worldy * _HeightOffset * factor);
         uv = inputVertex.uv;
-        vertexColor = float4(factor, 0.0f, 0.0f, 0.0f);
+        vertexColor = float4(0.0f, 0.0f, 0.0f, factor);
         drawTriangle.drawVertices[1] = GetVertex(position, normal, uv, vertexColor);
 
         inputVertex = inputTriangle.v2;
@@ -96,7 +96,7 @@ void ShellTexture (uint3 id : SV_DispatchThreadID)
         //position = inputVertex.position + (normal * _HeightOffset * factor);
         position = transformPositionLocalToWorld(inputVertex.position) + (worldy * _HeightOffset * factor);
         uv = inputVertex.uv;
-        vertexColor = float4(factor, 0.0f, 0.0f, 0.0f);
+        vertexColor = float4(0.0f, 0.0f, 0.0f, factor);
         drawTriangle.drawVertices[2] = GetVertex(position, normal, uv, vertexColor);
 
         _DrawTrianglesBuffer.Append(drawTriangle);
