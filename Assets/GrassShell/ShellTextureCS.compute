@@ -60,7 +60,7 @@ float3 transformPositionLocalToWorld(float3 position)
     return mul(_LocalToWorld, float4(position, 1.0f)).xyz;
 }
 
-[numthreads(32,1,1)]
+[numthreads(64,1,1)]
 void ShellTexture (uint3 id : SV_DispatchThreadID)
 {
     if(id.x >= (uint)_TriangleCount)
