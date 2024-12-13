@@ -15,8 +15,8 @@ MonoBehaviour:
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
-  - {fileID: 0}
-  m_RendererFeatureMap: b28cb2c81c7fdb1e
+  - {fileID: 3142237345662647933}
+  m_RendererFeatureMap: 7d3e30b437789b2b
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -68,3 +68,18 @@ MonoBehaviour:
   m_Active: 1
   m_bloomShader: {fileID: 4800000, guid: 79a52f3dfbb615c4288b8be2167cd18b, type: 3}
   m_compositeShader: {fileID: -6465566751694194690, guid: 09c604f2937e647478433a95ce88807e, type: 3}
+--- !u!114 &3142237345662647933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daff04bba4141b647ac9cd7b28fbb922, type: 3}
+  m_Name: DitheringRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    material: {fileID: 2100000, guid: c3e10ec28b081cd40b07a862132b20c7, type: 2}

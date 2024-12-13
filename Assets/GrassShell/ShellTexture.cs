@@ -136,14 +136,18 @@ public class ShellTexture : MonoBehaviour
             currentTriangle.v0.position = mesh.vertices[mesh.triangles[i]];
             currentTriangle.v0.normal = mesh.normals[mesh.triangles[i]];
             currentTriangle.v0.uv = mesh.uv[mesh.triangles[i]];
-            
+
+             
             currentTriangle.v1.position = mesh.vertices[mesh.triangles[i + 1]];
             currentTriangle.v1.normal = mesh.normals[mesh.triangles[i + 1]];
             currentTriangle.v1.uv = mesh.uv[mesh.triangles[i + 1]];
-            
+
+
             currentTriangle.v2.position = mesh.vertices[mesh.triangles[i + 2]];
             currentTriangle.v2.normal = mesh.normals[mesh.triangles[i + 2]];
             currentTriangle.v2.uv = mesh.uv[mesh.triangles[i + 2]];
+
+
             inputTriangles[triangle] = currentTriangle;
         }
         

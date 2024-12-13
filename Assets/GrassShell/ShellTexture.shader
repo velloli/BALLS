@@ -6,6 +6,8 @@ Shader"Unlit/ShellTexture"
 		_SecondaryColor ("SecondaryColor", Color) = (1,1,1,1)
 		_MainTex ("Texture", 2D) = "white" {}
 		_WindTex ("WindTex", 2D) = "white" {}
+		_GrassMask("Grass Mask", 2D) = "white" {}
+
 		_ParticleTexture ("ParticleTexture", 2D) = "white" {}
 		_ScrollSpeed ("ScrollSpeed", Float) = 0.2
 		_WindStrength ("WindStrength", Float) = 0.2
@@ -45,6 +47,8 @@ sampler2D _WindTex;
 float4 _WindTex_ST;
 sampler2D _ParticleTexture;
 float4 _ParticleTexture_ST;
+sampler2D _GrassMask;
+float4 _GrassMask_ST;
 float _ScrollSpeed;
 float _WindStrength;
 float _OrthographicCamSize;
@@ -133,10 +137,12 @@ fixed4 frag (v2f i) : SV_Target
     wind =  (wind - 0.5) * 0.5;
 	
 	//float tex = tex2D(_MainTex, i.uv).x;	
+    float mask = tex2D(_GrassMask, i.uv * _GrassMask_ST);
     float tex = tex2D(_MainTex, i.uv + float2(( wind * 0.05 * i.color.w * i.color.w), ( wind * 0.1 * i.color.w * i.color.w))).
     x;
     float Ntex = tex2D(_MainTex, i.uv * noise).x;
     clip(tex - i.color.w);
+    clip(tex - mask);
 				
 				
 	//this cloudShadows is the cloud shadows
@@ -148,7 +154,9 @@ fixed4 frag (v2f i) : SV_Target
     saturate(distanceToPlayer / 50));
 	
     float editModeInfluence = lerp(1, noiseScale, _EM);
-    return lerp(_SecondaryColor, _Color, fractalNoise(i.worldPos.xz * 0.005, 0.5f, 1) * 0.3f + cloudShadows * 0.2f + tex * editModeInfluence);
+	fixed4 final = lerp(_SecondaryColor, _Color, fractalNoise(i.worldPos.xz * 0.005, 0.5f, 1) * 0.3f + cloudShadows * 0.2f + tex * editModeInfluence);
+	
+    return final ;
 	
 	
 
