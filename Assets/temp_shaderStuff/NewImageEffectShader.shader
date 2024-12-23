@@ -99,7 +99,7 @@ Shader "Custom/NewImageEffectShader"
                 fixed4 downscaledCol = tex2D(_MainTex, downscaledUV);
     
                 fixed4 col = tex2D(_MainTex, i.uv);
-    //return col;
+    return col;
                 float lum = dot(downscaledCol, float3(0.699f, 0.687f, 0.614f));
                 fixed4 dith = tex2D(_DitherTex, i.uv*10);
                 float noise = fractalNoise(i.uv *1000, 0.5f, 1); 
