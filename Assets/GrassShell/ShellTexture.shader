@@ -141,8 +141,8 @@ fixed4 frag (v2f i) : SV_Target
     float tex = tex2D(_MainTex, i.uv + float2(( wind * 0.05 * i.color.w * i.color.w), ( wind * 0.1 * i.color.w * i.color.w))).
     x;
     float Ntex = tex2D(_MainTex, i.uv * noise).x;
-    clip(tex - i.color.w);
-    clip(tex - mask);
+    //clip(tex - mask);
+    clip(tex - i.color.w - mask);
 				
 				
 	//this cloudShadows is the cloud shadows

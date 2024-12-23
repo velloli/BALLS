@@ -93,9 +93,8 @@ Shader "Custom/NewImageEffectShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float downscaleFactor = 200.0; // Adjust this to control downscaling intensity
+                float downscaleFactor = 250.0; // Adjust this to control downscaling intensity
                 float2 downscaledUV = floor(i.uv * downscaleFactor) / downscaleFactor;
-                
                 // Sample the texture at the downscaled UV coordinates
                 fixed4 downscaledCol = tex2D(_MainTex, downscaledUV);
     
@@ -105,7 +104,7 @@ Shader "Custom/NewImageEffectShader"
                 fixed4 dith = tex2D(_DitherTex, i.uv*10);
                 float noise = fractalNoise(i.uv *1000, 0.5f, 1); 
     //return noise*dith;
-                float thresholdLum = dot(noise, float3(0.199f, 0.187f, 0.114f));
+                float thresholdLum = dot(noise, float3(0.1f, 0.1f, 0.1f));
                 float rampVal = lum < thresholdLum ? thresholdLum - lum : 1.0f;
                 //float3 rgb = tex2D(_ColorRampTex, float2(rampVal, 0.5f));
                 //return rampVal;
@@ -115,13 +114,16 @@ Shader "Custom/NewImageEffectShader"
                 
                 // Upscale by sampling the original texture with the original UV coordinates
                 fixed4 originalCol = tex2D(_MainTex, i.uv);
-                
+                //return originalCol;
                 // Blend or combine the downscaled and original textures as needed
                 // For example, a simple interpolation:
                 float blend = 0.5; // Adjust blend factor as desired
+                return downscaledCol;
                 fixed4 finalColor = lerp(originalCol, downscaledCol, blend);
+
+                return finalColor;
     //return rampVal;
-                return downscaledCol * (rampVal + 0.5);
+                //return downscaledCol * (rampVal + 0.5);
     //return col;
     
     
