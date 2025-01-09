@@ -3,7 +3,11 @@ using UnityEngine;
 
 
 
-
+/*
+ * 
+ * THIS SCCRIPT TAKES CARE OF EQUIPPING AND USING ALL THE WEAPONS/CONSUMABLES
+ * 
+ */
 
 public class Build : MonoBehaviour
 {
@@ -32,13 +36,23 @@ public class Build : MonoBehaviour
     public bool FirePrimaryWeapon()
     {
 
-        if (PrimaryWeapon)
+        if (PrimaryWeapon !=null)
         {
             PrimaryWeapon.Fire();
         }
         return true;
     }
-   
+
+    public bool FireSecondaryWeapon()
+    {
+
+        if (SecondaryWeapon!=null)
+        {
+            SecondaryWeapon.Fire();
+        }
+        return true;
+    }
+
     public bool EquipConsumable_slot1(ConsumableItem consumable)
     {
 
@@ -103,6 +117,7 @@ public class Build : MonoBehaviour
         }
 
         GetComponent<BuildDisplayer>().refreshWeaponsDisplay();
+        weapon.Preload(gameObject);
 
         return true;
     }
@@ -111,7 +126,7 @@ public class Build : MonoBehaviour
     {
         PrimaryWeapon = weapon;
         GetComponent<BuildDisplayer>().refreshWeaponsDisplay();
-        weapon.preload();
+        weapon.Preload(gameObject);
         // Refresh UI
         return true;
     }
@@ -179,9 +194,17 @@ public class Build : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {//left click
-
             FirePrimaryWeapon();
         }
+        else if(Input.GetMouseButtonDown(1))
+        {
+            FireSecondaryWeapon();
+        }
+    }
+
+    public void reloadPrimaryWeapon(){
+        //StartCoroutine(PrimaryWeapon.reloadRoutine());
+
     }
 
 }

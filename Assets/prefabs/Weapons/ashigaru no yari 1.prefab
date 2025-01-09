@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8167991342083249169}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.0232096, y: 1.1469781, z: -10.861505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-476364960393246826
 MonoBehaviour:
@@ -49,3 +49,9 @@ MonoBehaviour:
   damage: 50
   displayMesh: {fileID: 4579454407841743219, guid: 377069117f6e981418ba7ac694f25210, type: 3}
   displayMaterial: {fileID: 2100000, guid: fe522d4ddb5bd6a46a0107011f529ec5, type: 2}
+  equipMaterials:
+  - {fileID: -876546973899608171, guid: 75ca1548be7620d4cae581e3ca23b0f2, type: 3}
+  weaponProjectile: {fileID: 8973218743252881455, guid: f2634404cb8e6d849b9123494c34e5c2, type: 3}
+  reloadDuration: 3
+  range: 100
+  displayProjectileVelocity: 60

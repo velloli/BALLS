@@ -119,7 +119,7 @@ public class Schmovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift)  && GameManager.Instance.phaseUnlocked)
         {
-            Debug.Log("yeet");
+            //Debug.Log("yeet");  
             if (!isPhasing)
             {
                 isPhasing = true;

@@ -11,11 +11,15 @@ public class justSchmovement : MonoBehaviour
     public float maxVelocity = 10.0f;
     public Vector3 movementDirection;
 
+    private PlayerVFXManager playerVFXManager;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         Camerara = Camera.main.gameObject;
+
+        playerVFXManager = GetComponent<PlayerVFXManager>();
     }
 
     void handleInput()
@@ -52,6 +56,7 @@ public class justSchmovement : MonoBehaviour
             Vector3 jumpVelocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
             rb.velocity = jumpVelocity;
             doMovement(Vector3.up);
+            playerVFXManager.PopSmoke();
             isGrounded = false;
         }
 

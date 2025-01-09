@@ -171,7 +171,7 @@ Material:
     - _Color: {r: 0.4494482, g: 0.9433962, b: 0.5156474, a: 1}
     - _EMISSION_COLOR: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Position: {r: 309.80286, g: 18.073097, b: 695.6881, a: 0}
+    - _Position: {r: 288.75482, g: 22.393005, b: 644.1982, a: 0}
     - _SPECULAR_COLOR: {r: 1, g: 1, b: 1, a: 0}
     - _SecondaryColor: {r: 0.15205587, g: 0.6320754, b: 0.20952299, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}

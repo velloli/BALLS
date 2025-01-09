@@ -6,6 +6,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // A static reference to the GameManager instance
+    public BuildDisplayer buildDisplayer;
+    public Build build;
+
 
     public delegate void BulletEventHandler();
     public static event BulletEventHandler playerPhase;
@@ -40,6 +43,14 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("GM SET");
+    }
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        buildDisplayer = player.GetComponent<BuildDisplayer>();
+        build = player.GetComponent<Build>();
+        Application.targetFrameRate = 300;
     }
 
     private void Update()

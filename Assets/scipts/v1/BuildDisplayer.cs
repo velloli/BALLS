@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Unity.Burst.CompilerServices;
 using UnityEditor.Rendering;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class BuildDisplayer : MonoBehaviour
 {
+    //THESE ARE THE PARENT OBJECTS
     [ReadOnly]public GameObject WeaponHolderBase;
     [ReadOnly]public GameObject PrimaryWeaponHolder;
     [ReadOnly]public GameObject SecondaryWeaponHolder;
     public GameObject weaponPrefab;
 
+    //THESE ARE THE ACTUAL MESHES WHICH ATTACH TO THE HOLDERS
     private GameObject primaryWeaponMesh,secondaryWeaponMesh;
+    private MeshFilter primaryMeshFilter, secondaryMeshFilter;
+    private MeshRenderer primaryMeshRenderer,secondaryMeshRenderer;
+    private Build build;
 
 
     public Vector3 PrimaryWeaponOffset = new Vector3(1.0f, 1.0f, 0);
@@ -44,11 +51,17 @@ public class BuildDisplayer : MonoBehaviour
 
         //primary weapon object
         primaryWeaponMesh = Instantiate(weaponPrefab);
-        primaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = null;
+        primaryMeshFilter = primaryWeaponMesh.GetComponentInChildren<MeshFilter>();
+        primaryMeshFilter.mesh = null;
+        primaryMeshRenderer = primaryWeaponMesh.GetComponentInChildren<MeshRenderer>();
 
         //secondary weapon object
         secondaryWeaponMesh = Instantiate(weaponPrefab);
-        secondaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = null;
+        secondaryMeshFilter = secondaryWeaponMesh.GetComponentInChildren<MeshFilter>();
+        secondaryMeshFilter.mesh = null;
+        secondaryMeshRenderer = secondaryWeaponMesh.GetComponentInChildren<MeshRenderer>();
+
+        build = GetComponent<Build>();
 
     }
     private void FixedUpdate()
@@ -70,8 +83,6 @@ public class BuildDisplayer : MonoBehaviour
         WeaponHolderBase.transform.forward = Camera.main.transform.forward;
         //Debug.Log(PrimaryWeaponHolder.transform.position);
 
-      
-
         primaryWeaponMesh.transform.forward = Camera.main.transform.forward;
         secondaryWeaponMesh.transform.forward = Camera.main.transform.forward;
         //primaryWeaponMesh.transform.RotateAroundLocal(new Vector3(0, 1, 0), 90);
@@ -87,19 +98,58 @@ public class BuildDisplayer : MonoBehaviour
 
     public void refreshPrimaryWeapon()
     {
-        primaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = GetComponent<Build>().PrimaryWeapon.displayMesh;
+        primaryMeshFilter.mesh = build.PrimaryWeapon.displayMesh;
     }
 
     public void refreshWeaponsDisplay()
     {
-        if (GetComponent<Build>().PrimaryWeapon)
+        if (build.PrimaryWeapon !=null)
         {
-            primaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = GetComponent<Build>().PrimaryWeapon.displayMesh;
+            primaryMeshFilter.mesh = build.PrimaryWeapon.displayMesh;
+            primaryMeshRenderer.SetMaterials(build.PrimaryWeapon.equipMaterials);
 
         }
 
-        if (GetComponent<Build>().SecondaryWeapon)
-            secondaryWeaponMesh.GetComponentInChildren<MeshFilter>().mesh = GetComponent<Build>().SecondaryWeapon.displayMesh;
+        if (build.SecondaryWeapon != null)
+        {
+            secondaryMeshFilter.mesh = build.SecondaryWeapon.displayMesh;
+            secondaryMeshRenderer.SetMaterials(build.SecondaryWeapon.equipMaterials);
+        }
+
+    }
+
+    public GameObject GetWeaponHolder(WeaponItem weaponItem)
+    {
+        GameObject ret = null;
+        if(build.PrimaryWeapon == weaponItem){
+            ret = PrimaryWeaponHolder;
+        }
+        else if(build.SecondaryWeapon == weaponItem)
+        {
+            ret = SecondaryWeaponHolder;
+        }
+
+        return ret;
+    }
+
+    public MeshRenderer GetWeaponMeshRenderer(WeaponItem weaponItem)
+    {
+        MeshRenderer ret = null;
+        if (build.PrimaryWeapon == weaponItem)
+        {
+            ret = primaryMeshRenderer;
+        }
+        else if (build.SecondaryWeapon == weaponItem)
+        {
+            ret = secondaryMeshRenderer;
+        }
+
+        return ret;
+    }
+
+    public void HideWeaponMesh(WeaponItem weaponItem){
+
+
 
     }
 }

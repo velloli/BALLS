@@ -71,7 +71,8 @@ public class CamerMovement : MonoBehaviour
     }
     void mouseSchmovement()
     {
-        target = SPHERE.transform.position;
+        Vector3 targetDelta = new Vector3(0.0f,1.0f, 0.0f);
+        target = SPHERE.transform.position + targetDelta;
 
         // Get the deltas that describe how much the mouse cursor got moved between frames
         float dx = Input.GetAxis("Mouse X") * rotationSpeed * mouseSens * -1;

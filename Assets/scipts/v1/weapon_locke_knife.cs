@@ -11,11 +11,22 @@ public class weapon_locke_knife : WeaponItem
         Debug.Log("locke knife fired");
     }
 
+    public override void Unload()
+    {
+
+    }
+
     // Override the preload method if needed
-    public override void preload()
+    public override void Preload(GameObject player)
     {
         // Implement your custom preload logic here
         Debug.Log("locke knife loaded");
+
+    }
+
+    public override void Reload()
+    {
+        // Implement your custom preload logic here
 
     }
 }

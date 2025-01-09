@@ -6,6 +6,7 @@ using UnityEngine;
 public class WeaponSpawn : MonoBehaviour
 {
     //public game
+    [SerializeField]
     public WeaponItem weapon;
     public MeshFilter displayMeshFilter;
     // Start is called before the first frame update
@@ -27,7 +28,7 @@ public class WeaponSpawn : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Build>().EquipWeapon(weapon);
+            other.gameObject.GetComponent<Build>().EquipWeapon(weapon);//this one
             Debug.Log("Player picked up object");
             Destroy(this.gameObject);
         }
